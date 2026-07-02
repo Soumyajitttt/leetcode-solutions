@@ -64,9 +64,10 @@
 
 class Solution {
     public int timeRequiredToBuy(int[] tickets, int k) {
+        Queue <Integer> q = new LinkedList<>();
         int time=0;
-        Queue<Integer>q= new LinkedList<>();
-        for(int i=0;i<tickets.length;i++){
+
+        for(int i=0; i< tickets.length; i++){
             q.add(i);
         }
 
@@ -76,15 +77,15 @@ class Solution {
 
             tickets[front]--;
 
-            if(tickets[front]!=0){
+            if(tickets[front] != 0 ){
                 q.add(front);
-            }
-            else{
-                if(front==k){
+            }else{
+                if(front == k){
                     return time;
                 }
             }
         }
-        return time;     
+
+        return time;
     }
 }
