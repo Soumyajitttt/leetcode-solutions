@@ -39,6 +39,8 @@
  * ----- Solution -----
  */
 
+import java.math.BigInteger;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -50,29 +52,52 @@
  * }
  */
 class Solution {
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode tail = dummyHead;
-        int carry = 0;
+        BigInteger sum = listToInt(reverse(l1)).add(listToInt(reverse(l2)));
+        return reverse(intToList(sum));
+    }
 
-        while (l1 != null || l2 != null || carry != 0) {
-            int digit1 = (l1 != null) ? l1.val : 0;
-            int digit2 = (l2 != null) ? l2.val : 0;
+    public BigInteger listToInt(ListNode head) {
+        BigInteger a = BigInteger.ZERO;
 
-            int sum = digit1 + digit2 + carry;
-            int digit = sum % 10;
-            carry = sum / 10;
-
-            ListNode newNode = new ListNode(digit);
-            tail.next = newNode;
-            tail = tail.next;
-
-            l1 = (l1 != null) ? l1.next : null;
-            l2 = (l2 != null) ? l2.next : null;
+        while (head != null) {
+            a = a.multiply(BigInteger.TEN)
+                 .add(BigInteger.valueOf(head.val));
+            head = head.next;
         }
 
-        ListNode result = dummyHead.next;
-        dummyHead.next = null;
-        return result;
+        return a;
+    }
+
+    public ListNode reverse(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode newHead = reverse(head.next);
+
+        head.next.next = head;
+        head.next = null;
+
+        return newHead;
+    }
+
+    public ListNode intToList(BigInteger num) {
+        if (num.equals(BigInteger.ZERO))
+            return new ListNode(0);
+
+        ListNode head = null;
+
+        while (num.compareTo(BigInteger.ZERO) > 0) {
+            ListNode node = new ListNode();
+
+            node.val = num.mod(BigInteger.TEN).intValue();
+            node.next = head;
+            head = node;
+
+            num = num.divide(BigInteger.TEN);
+        }
+
+        return head;
     }
 }
