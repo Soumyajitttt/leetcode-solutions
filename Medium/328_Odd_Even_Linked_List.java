@@ -60,7 +60,7 @@ class Solution {
         } 
 
         odd.next = evenHead;
-
+        System.gc(); 
         return head;
     }
 }
