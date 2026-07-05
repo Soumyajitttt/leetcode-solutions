@@ -59,8 +59,7 @@ class Solution {
             even = even.next;
         } 
 
-        odd.next = evenHead;
-        System.gc(); 
+        odd.next = evenHead; 
         return head;
     }
 }
