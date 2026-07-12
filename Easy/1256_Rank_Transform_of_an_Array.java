@@ -48,15 +48,15 @@ class Solution {
     public int[] arrayRankTransform(int[] arr) {
         int[] sorted = arr.clone();
         Arrays.sort(sorted);
-        int yo = 1;
+        int rank = 1;
 
-        HashMap<Integer, Integer> rank = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         for(int i=0; i<arr.length; i++){
-            if(!rank.containsKey(sorted[i])) rank.put(sorted[i], yo++);
+            if(!map.containsKey(sorted[i])) map.put(sorted[i], rank++);
         }
 
         for(int i=0; i<arr.length; i++){
-            arr[i] = rank.get(arr[i]);
+            arr[i] = map.get(arr[i]);
         }
 
         return arr;
