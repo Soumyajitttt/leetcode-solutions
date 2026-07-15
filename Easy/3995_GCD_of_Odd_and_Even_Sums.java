@@ -63,23 +63,6 @@
 
 class Solution {
     public int gcdOfOddEvenSums(int n) {
-        int sumOdd = 0;
-        int sumEven = 0;
-        while (n > 0){
-            sumOdd += 2*n - 1;
-            sumEven += 2*n;
-
-            n--;
-        }
-
-        return gcd(sumOdd,sumEven);
-    }
-
-    public int gcd(int a, int b) {
-        if (b == 0) {
-            return a;
-        }
-
-        return gcd(b, a % b);
+        return n;
     }
 }
