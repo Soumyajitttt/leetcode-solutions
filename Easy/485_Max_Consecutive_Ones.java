@@ -32,6 +32,7 @@
 
 class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {
+        if (nums.length == 0) return 0;
         int max = 0;
         int count = 0;
         
@@ -46,7 +47,6 @@ class Solution {
 
         }
 
-        max = Math.max(count, max);
-        return max;
+        return Math.max(count, max);
     }
 }
