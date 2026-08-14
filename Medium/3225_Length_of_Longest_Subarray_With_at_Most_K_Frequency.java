@@ -58,7 +58,11 @@ class Solution {
         int res = 0;
 
         while (j < nums.length) {
-            m.put(nums[j], m.getOrDefault(nums[j], 0) + 1);
+            if (m.containsKey(nums[j])) {
+                m.put(nums[j], m.get(nums[j]) + 1);
+            } else {
+                m.put(nums[j], 1);
+            }
 
             while (m.get(nums[j]) > k) {
                 m.put(nums[i], m.get(nums[i]) - 1);
